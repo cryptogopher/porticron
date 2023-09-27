@@ -195,9 +195,10 @@ fi
 
 
 # build list of upgrades
+: ${UPGRADE_SET:=world}
 : ${UPGRADE_OPTS:=--deep --update}
-log "running UPGRADE_CMD: ${EMERGE} ${UPGRADE_OPTS} --quiet --pretend world"
-UPGRADE=$(${EMERGE} ${UPGRADE_OPTS} --quiet --pretend world 2>/dev/null)
+log "running UPGRADE_CMD: ${EMERGE} ${UPGRADE_OPTS} --quiet --pretend ${UPGRADE_SET}"
+UPGRADE=$(${EMERGE} ${UPGRADE_OPTS} --quiet --pretend ${UPGRADE_SET} 2>/dev/null)
 
 if [[ -n ${UPGRADE} ]]; then
 	UPGRADE_MSG="
@@ -209,7 +210,7 @@ $(echo "${UPGRADE}" | sed 's/^\[/    [/')
 
 You can perform the upgrade by issuing the command:
 
-    emerge ${UPGRADE_OPTS} world
+    emerge ${UPGRADE_OPTS} ${UPGRADE_SET}
 
 as root on ${FQDN}
 
@@ -217,7 +218,7 @@ It is recommended that you pretend the upgrade first to confirm that
 the actions that would be taken are reasonable. The upgrade may be
 pretended by issuing the command:
 
-    emerge ${UPGRADE_OPTS} --pretend world
+    emerge ${UPGRADE_OPTS} --pretend ${UPGRADE_SET}
 
 "
 fi

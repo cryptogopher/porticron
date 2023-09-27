@@ -53,6 +53,10 @@ SYNC_OVERLAYS_CMD
   ``/bin/true``. Set this to ``/usr/bin/layman --sync-all`` to use layman for
   overlay synchronization.
 
+UPGRADE_SET
+  Set of packages for which pending upgrades should be reported by emerge, e.g.
+  ``world``, ``system``, ``selected``. Defaults to ``world``.
+
 UPGRADE_OPTS
   Command-line options that should be passed to emerge while scanning for
   pending upgrades. Defaults to ``--deep --update``.
